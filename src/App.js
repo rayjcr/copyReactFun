@@ -1,9 +1,10 @@
 import './App.css';
 import { getSessionID, SessionContext } from './context/session';
 import { useState, useEffect, useCallback } from 'react';
-import { AppBar, Drawer, IconButton, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Container, Drawer, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import MenuList from './components/MenuList';
+import Routes from './router/index'
 
 function App() {
 
@@ -17,6 +18,13 @@ function App() {
     //     },
     //     [menuOpen],
     // );
+
+    const handleMenuClose = useCallback(
+        () => {
+            setMenuOpen(false);
+        },
+        [],
+    )
 
     useEffect(() => {
         const loadSessionID = getSessionID();
@@ -35,7 +43,7 @@ function App() {
     return (
         <SessionContext.Provider value={permissions}>
             {/* 应用栏 */}
-            <AppBar>
+            <AppBar position='relative'>
                 {/* 工具栏 */}
                 <Toolbar>
                     {/* 带有Icon的Button */}
@@ -47,7 +55,7 @@ function App() {
                         onClick={()=>{setMenuOpen(!menuOpen)}}
                     >
                         {/* Menu样式的Icon */}
-                        <Menu />
+                        <Menu/>
                     </IconButton>
                     <Typography variant='h6'>
                         Internal Ops Tool
@@ -57,11 +65,16 @@ function App() {
                 <Drawer 
                     className='MenuListDrawer'
                     open={menuOpen}
-                    onClose={()=>{setMenuOpen(false)}}
+                    onClose={handleMenuClose}
                 >
-                    <MenuList />
+                    <MenuList closeMenu={handleMenuClose} />
                 </Drawer>
             </AppBar>
+
+            <Container>
+                <Routes />
+            </Container>
+
         </SessionContext.Provider>
     );
 }
