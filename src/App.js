@@ -6,6 +6,7 @@ import { Menu } from '@material-ui/icons';
 import MenuList from './components/MenuList';
 import Routes from './router/index'
 
+
 function App() {
 
     const [permissions, setPermissions] = useState();
@@ -23,7 +24,7 @@ function App() {
         () => {
             setMenuOpen(false);
         },
-        [],
+        [setMenuOpen],
     )
 
     useEffect(() => {
@@ -34,12 +35,13 @@ function App() {
         if (!loadSessionID){
 
         } else {
+            setPermissions('')
         //1. 获取用户权限
         //2. SessionID验证失败跳到登录组件 、提示错误
         }
 
     }, [])
-
+    console.log(permissions,'permissions')
     return (
         <SessionContext.Provider value={permissions}>
             {/* 应用栏 */}

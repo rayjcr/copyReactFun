@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { Paper, Typography } from '@material-ui/core'
+export default function AddUser({match}) {
+    console.log(match.params, 'id--addUser--line 5')
+    const [isEdit, setIsEdit] = useState(false);
 
-export default function AddUser() {
+    useEffect(() => {
+       !!match.params.id ? setIsEdit(true) : setIsEdit(false);
+    }, []);
+
     return (
-        <div>
-            <h2>这里是新增用户的页面</h2>
-        </div>
+        <Paper style={{padding:'20px'}}>
+            <Typography variant='h5'>
+                { isEdit ? 'Edit User' : 'Create New User' }
+            </Typography>
+
+            
+        </Paper>
     )
 }

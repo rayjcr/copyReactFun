@@ -1,3 +1,7 @@
+import Users from '../views/Users';
+import AddUser from '../views/AddUser';
+import Test from '../views/Test';
+
 const MENU = [
     {
         path: '/users',
@@ -5,19 +9,24 @@ const MENU = [
             {
                 path: '/users/',
                 exact: true,
-                component: 'Users'
+                component: Users
             },
             {
                 path: '/users/new',
                 exact: true,
-                component: 'AddUser'
-            }
+                component: AddUser
+            },
+            {
+                path: '/users/:id',
+                exact: true,
+                component: AddUser
+            },
         ]
     },
     {
         exact: true,
         path: '/test',
-        component: 'Test'
+        component: Test
     },
 ]
 

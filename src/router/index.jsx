@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router';
 import MENU from './config'
-import substance from './substance';
+// import substance from './substance';
 
 function recurrenceRouter(menuList){
     //  Routers;
@@ -12,7 +12,7 @@ function recurrenceRouter(menuList){
                 path = {item.path} 
                 key = {item.path} 
                 exact = {!!item.exact} 
-                component={ substance[item.component] || ''}
+                component = { item.component || ''}
                 ></Route>
             )
         }else{
@@ -33,7 +33,7 @@ function recurrenceRouter(menuList){
 
 
 export default function Routes() {
-    // console.log(menus, 'router-index.jsx--menu--line 5')
+    // console.log(MENU, 'router-index.jsx--menu--line 5')
     return (
         <Switch>
             {recurrenceRouter(MENU)}

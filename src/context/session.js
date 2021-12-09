@@ -3,7 +3,7 @@ import { createContext } from 'react';
 // 设置sessionID
 export var sessionID = '';
 
-console.log(process.env, 'session.js--process.ev--line 6');
+// console.log(process.env, 'session.js--process.ev--line 6');
 
 export function getSessionID(){
     sessionID = '46e111d29dc934b4438b200cde2f113d';

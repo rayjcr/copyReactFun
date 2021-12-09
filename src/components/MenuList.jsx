@@ -2,7 +2,7 @@ import { Divider, List, ListItem as MuiListItem, ListItemIcon, ListItemText } fr
 import { PeopleAlt, PersonAdd } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 import React, { useEffect } from 'react'
-import { SessionContext } from '../context/session'
+// import { SessionContext } from '../context/session'
 
 const ListItem = (props) => {
     // 这里的props 就是ListItem组件上的 to  和 children 他包含的2个组件 ListItemIcon, ListItemText
