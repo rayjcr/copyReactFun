@@ -28,7 +28,7 @@ function App() {
 
     useEffect(() => {
         const loadSessionID = getSessionID();
-        console.log(loadSessionID, 'App.js-loadSessionID--line 11');
+        // console.log(loadSessionID, 'App.js-loadSessionID--line 11');
 
         // 如果没有SessionID跳转到登录组件 、提示错误
         if (!loadSessionID){
@@ -71,7 +71,7 @@ function App() {
                 </Drawer>
             </AppBar>
 
-            <Container>
+            <Container style={{margin:'30px auto'}} maxWidth='md'>
                 <Routes />
             </Container>
 

@@ -1,4 +1,4 @@
-const menu = [
+const MENU = [
     {
         path: '/users',
         children:[
@@ -21,4 +21,4 @@ const menu = [
     },
 ]
 
-export default menu;
+export default MENU;
