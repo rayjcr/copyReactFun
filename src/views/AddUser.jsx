@@ -5,9 +5,10 @@ import { useRootStore } from '../store/index'
 import { autorun, reaction } from 'mobx'
 import { observer, useLocalObservable } from 'mobx-react'
 import Test from './Test'
+import CompTest from './CompTest'
 
 // const countContext = createContext();
-export default function AddUser(abc) {
+export default function AddUser() {
     // console.log(match.params, 'id--addUser--line 5')
     const [isEdit, setIsEdit] = useState(false);
     const [count, setCount] = useState(0);
@@ -40,6 +41,7 @@ export default function AddUser(abc) {
             <Typography variant='h5'>
                 { isEdit ? 'Edit User' : 'Create New User' }
             </Typography>
+            <CompTest></CompTest>
             <Test></Test>
             <button onClick={getData}>获取数据</button>
         </Paper> 
