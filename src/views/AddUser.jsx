@@ -4,11 +4,13 @@ import { Paper, Typography } from '@material-ui/core'
 import { useRootStore } from '../store/index'
 import { autorun, reaction } from 'mobx'
 import { observer, useLocalObservable } from 'mobx-react'
+import Test from './Test'
 
 // const countContext = createContext();
 export default function AddUser(abc) {
     // console.log(match.params, 'id--addUser--line 5')
     const [isEdit, setIsEdit] = useState(false);
+    const [count, setCount] = useState(0);
     // const count = useContext(countContext);
 
     const {countStore} = useRootStore()
@@ -23,11 +25,12 @@ export default function AddUser(abc) {
     // )
 
     useEffect(() => {
-        countStore.increment();
         console.log(countStore.count,'countStore.count')
-    }, []);
+    }, [count]);
 
     const getData = () => {
+        countStore.increment();
+        setCount(countStore.count);
         console.log('这里是啥~~getData')
     }
 
@@ -37,7 +40,7 @@ export default function AddUser(abc) {
             <Typography variant='h5'>
                 { isEdit ? 'Edit User' : 'Create New User' }
             </Typography>
-
+            <Test></Test>
             <button onClick={getData}>获取数据</button>
         </Paper> 
     )
