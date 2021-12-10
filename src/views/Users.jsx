@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom'
 import { getAllUsers } from  '../api/api-mock';
 import { Delete, Edit } from '@material-ui/icons';
 import { reject } from 'lodash'
+import { useRootStore } from '../store/index'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function Users() {
+    const {countStore} = useRootStore();
+
     // const session = useContext(SessionContext);
     //用户列表信息
     const [users, setUsers] = useState([]);
@@ -41,7 +44,7 @@ export default function Users() {
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>User ID</TableCell>
+                        <TableCell>User ID{countStore.count}</TableCell>
                         <TableCell>Email</TableCell>
                         <TableCell>Status</TableCell>
                         <TableCell>Time Created</TableCell>

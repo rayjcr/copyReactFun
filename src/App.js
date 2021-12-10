@@ -5,7 +5,9 @@ import { AppBar, Container, Drawer, IconButton, Toolbar, Typography } from '@mat
 import { Menu } from '@material-ui/icons';
 import MenuList from './components/MenuList';
 import Routes from './router/index'
+import { RootStore, RootStoreProvider } from './store/index'
 
+const rootStore = new RootStore();
 
 function App() {
 
@@ -41,43 +43,45 @@ function App() {
         }
 
     }, [])
-    console.log(permissions,'permissions')
+    // console.log(permissions,'permissions')
     return (
-        <SessionContext.Provider value={permissions}>
-            {/* 应用栏 */}
-            <AppBar position='relative'>
-                {/* 工具栏 */}
-                <Toolbar>
-                    {/* 带有Icon的Button */}
-                    <IconButton
-                        aria-label='menu'
-                        edge='start'
-                        size='medium'
-                        color='inherit'
-                        onClick={()=>{setMenuOpen(!menuOpen)}}
+        <RootStoreProvider store={rootStore}>
+            <SessionContext.Provider value={permissions}>
+                {/* 应用栏 */}
+                <AppBar position='relative'>
+                    {/* 工具栏 */}
+                    <Toolbar>
+                        {/* 带有Icon的Button */}
+                        <IconButton
+                            aria-label='menu'
+                            edge='start'
+                            size='medium'
+                            color='inherit'
+                            onClick={()=>{setMenuOpen(!menuOpen)}}
+                        >
+                            {/* Menu样式的Icon */}
+                            <Menu/>
+                        </IconButton>
+                        <Typography variant='h6'>
+                            Internal Ops Tool
+                        </Typography>
+                    </Toolbar>
+                    {/* 侧边条菜单 */}
+                    <Drawer 
+                        className='MenuListDrawer'
+                        open={menuOpen}
+                        onClose={handleMenuClose}
                     >
-                        {/* Menu样式的Icon */}
-                        <Menu/>
-                    </IconButton>
-                    <Typography variant='h6'>
-                        Internal Ops Tool
-                    </Typography>
-                </Toolbar>
-                {/* 侧边条菜单 */}
-                <Drawer 
-                    className='MenuListDrawer'
-                    open={menuOpen}
-                    onClose={handleMenuClose}
-                >
-                    <MenuList closeMenu={handleMenuClose} />
-                </Drawer>
-            </AppBar>
+                        <MenuList closeMenu={handleMenuClose} />
+                    </Drawer>
+                </AppBar>
 
-            <Container style={{margin:'30px auto'}} maxWidth='md'>
-                <Routes />
-            </Container>
+                <Container style={{margin:'30px auto'}} maxWidth='md'>
+                    <Routes />
+                </Container>
 
-        </SessionContext.Provider>
+            </SessionContext.Provider>
+        </RootStoreProvider>
     );
 }
 
