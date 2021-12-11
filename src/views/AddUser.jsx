@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Paper, Typography } from '@material-ui/core'
 
 import { useRootStore } from '../store/index'
-import { autorun, reaction } from 'mobx'
+import { autorun, reaction, toJS } from 'mobx'
 import { observer, useLocalObservable } from 'mobx-react'
 import Test from './Test'
 import CompTest from './CompTest'
@@ -14,7 +14,8 @@ export default function AddUser() {
     const [count, setCount] = useState(0);
     // const count = useContext(countContext);
 
-    const {countStore} = useRootStore()
+    const {countStore} = useRootStore();
+    const {personStore} = useRootStore();
     // console.log( rootStore ,'count')
  
     // reaction(
@@ -26,6 +27,7 @@ export default function AddUser() {
     // )
 
     useEffect(() => {
+        console.log(toJS(personStore.getPersons),'personStroe.person')
         console.log(countStore.count,'countStore.count')
     }, [count]);
 
@@ -33,6 +35,11 @@ export default function AddUser() {
         countStore.increment();
         setCount(countStore.count);
         console.log('这里是啥~~getData')
+    }
+
+    const getPerson = () => {
+        personStore.setPerson({a:99})
+        console.log(toJS(personStore.getPersons),'事发')
     }
 
 
@@ -44,6 +51,7 @@ export default function AddUser() {
             <CompTest></CompTest>
             <Test></Test>
             <button onClick={getData}>获取数据</button>
+            <button onClick={getPerson}>这里改动person数据</button>
         </Paper> 
     )
 }

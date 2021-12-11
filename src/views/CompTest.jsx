@@ -2,7 +2,7 @@ import React from 'react'
 import { useRootStore } from '../store/index'
 export default function CompTest() {
     const { countStore } = useRootStore()
-    console.log(countStore, 'compTest--line 5')
+    // console.log(countStore, 'compTest--line 5')
     const addNum = () => {
         countStore.increment()
     }

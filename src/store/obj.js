@@ -1,16 +1,19 @@
 import { makeAutoObservable } from 'mobx'
 
-class Person {
-    person = {}
+class PersonStore {
+    person = {a:6}
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this, {}, {autoBind: true})
     }
-    setPerson() {
-        this.person = {a:1,b:2,c:3};
+    get getPersons(){
+        return this.person
+    }
+    setPerson(val) {
+        this.person = {...this.person,...val};
     }
 }
 
-export default Person
+export default PersonStore
 
 // export default makeAutoObservable({
 //     persons:{},
