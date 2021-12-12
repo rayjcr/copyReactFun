@@ -19,3 +19,9 @@ export function getAllUsers(params){
         }]
     })
 }
+
+export function getUserInfoById(params){
+    return Mock.mock({
+        user_id:'2133232323'
+    })
+}
